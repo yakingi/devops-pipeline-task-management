@@ -1,0 +1,23 @@
+name: Auto Add Issues to Backlog
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  project: write
+  contents: read
+
+jobs:
+  add_to_backlog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add issue to Backlog column
+        run: |
+          gh project item-add \
+            --owner YOUR_ORG_OR_USERNAME \
+            --project-number YOUR_PROJECT_NUMBER \
+            --content-id ${{ github.event.issue.node_id }} \
+            --column-id COLUMN_ID_BACKLOG
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
