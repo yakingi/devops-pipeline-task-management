@@ -12,11 +12,11 @@ jobs:
   add_to_backlog:
     runs-on: ubuntu-latest
     steps:
-      - name: Add issue to Backlog column
+      - name: Add issue to project
         run: |
           gh project item-add \
-            --owner YOUR_ORG_OR_USERNAME \
-            --project-number YOUR_PROJECT_NUMBER \
+            --owner dianegit \
+            --project-number 3 \
             --content-id ${{ github.event.issue.node_id }} \
             --column-id COLUMN_ID_BACKLOG
         env:
